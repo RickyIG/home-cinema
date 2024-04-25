@@ -47,6 +47,7 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
+    <li><a href="#entity-relationship-diagram-erd">Entity-Relationship Diagram (ERD)</a></li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
@@ -444,7 +445,7 @@ Catatan :
 ### Transaksi
 
 Catatan : 
-- Disinilah Endpoint Transaksi berlangsung.
+- Disinilah proses transaksi berlangsung.
 
 #### POST Pesan Tiket (Melakukan Transaksi)
 - Endpoint: `https://home-cinema-production.up.railway.app/jadwal/:id_jadwal/transactions`
