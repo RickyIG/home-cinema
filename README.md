@@ -114,7 +114,57 @@ Berikut link yang telah di-deploy:
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Dalam project ini, terdapat 2 tipe kasus. Terdapat Method GET Rest API yang tersedia untuk kasus bangun datar (segitiga-sama-sisi, persegi, persegi-panjang, lingkaran) dan 9 Method Rest API yang tersedia untuk kasus buku.
+### User Roles
+- **Role ID 1:** Customer
+- **Role ID 2:** Admin
+- **Role ID 3:** Fintech
+
+
+### User
+
+#### POST Register User
+- Endpoint: `https://home-cinema-production.up.railway.app/register/user`
+- Notes:
+  - Panjang password harus minimal panjangnya 8 character, harus memuat setidaknya 1 special character, 1 lowercase, 1 uppercase, dan 1 angka
+  - Email harus valid
+- Contoh Input Raw Body (JSON):
+  ```json
+  {
+    "username": "Test12345#",
+    "password": "Test12345#",
+    "first_name": "Test",
+    "last_name" : "Test",
+    "email": "test@gmail.com",
+    "phone_number": "082839128762"
+  }
+
+
+#### POST Register User
+- Endpoint: `https://home-cinema-production.up.railway.app/register/user`
+- Contoh Input Raw Body (JSON):
+  ```json
+  {
+      "username": "rickyindrag",
+      "password": "Kocak@12345"
+  }
+
+#### POST Register User
+- Endpoint: `https://home-cinema-production.up.railway.app/register/user`
+- Contoh Input Raw Body (JSON):
+  ```json
+  {
+      "username": "Fintech@12345",
+      "password": "Fintech@12345"
+  }
+
+#### POST Login
+- Endpoint: `https://home-cinema-production.up.railway.app/login`
+- Contoh Input Raw Body (JSON):
+  ```json
+  {
+      "username": "rickyindrag",
+      "password": "Kocak@12345"
+  }
 
 
 https://quiz-3-golang-production.up.railway.app/bangun-datar/segitiga-sama-sisi?hitung=luas&alas=7&tinggi=4
