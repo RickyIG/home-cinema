@@ -335,7 +335,7 @@ Predefined roles.
 ### Manajemen Kursi
 
 Catatan : 
-- CRUD Kursi (INSERT Kursi, POST Kursi, PUT Kursi, dan DELETE Kursi) jarang digunakan karena akan ada proses automasi dari pembuatan Jadwal.
+- POST Insert Kursi, PUT Update Kursi, dan DELETE Delete Kursi jarang digunakan karena akan ada proses automasi dari pembuatan Jadwal.
 - Perhatikan foreign key pada ERD.
 
 #### GET All Kursis
@@ -379,6 +379,64 @@ Catatan :
 - Token: ```<token>```
 
 
+### Manajemen Jadwal
+
+Catatan : 
+- PUT Update Jadwal dan DELETE Delete Jadwal jarang digunakan dalam proses bisnis.
+- Perhatikan foreign key pada ERD.
+
+#### GET All Jadwals
+- Endpoint: `https://home-cinema-production.up.railway.app/jadwal`
+- Deskripsi: Mengambil daftar semua jadwal film (kemungkinan termasuk informasi film, studio, dan waktu tayang). (Permintaan GET)
+
+#### GET Jadwal by ID Jadwal
+- Endpoint: `https://home-cinema-production.up.railway.app/jadwal/:id_jadwal`
+- Deskripsi: Mengambil informasi tentang entri jadwal tertentu berdasarkan ID-nya. Memerlukan autentikasi pengguna (middleware.JWTAuth(1)). (Permintaan GET)
+- Authorization: Bearer Token
+- Token: ```<token>``` 
+
+#### POST Insert Jadwal
+- Endpoint: `https://home-cinema-production.up.railway.app/jadwal`
+- Deskripsi: Mengizinkan admin untuk membuat entri jadwal film baru. Memerlukan autentikasi admin (middleware.JWTAuth(2)). (Permintaan POST)
+- Notes:
+  - Semua harus diisi.
+  - Perhatikan pada contoh input raw body (JSON).
+    - tanggal_tayang = Tanggal film tayang, yang diutamakan adalah data YYYY-MM-DD, meskipun cara inputnya harus sesuai format ["2024-04-25T00:00:00Z"]
+    - jam_tayang = Jam film tayang, yang diutamakan adalah data hh:mm:ss, meskipun cara inputnya harus sesuai format ["2024-04-25T17:30:00Z"]
+- Authorization: Bearer Token
+- Token: ```<token>```
+- Contoh Input Raw Body (JSON):
+  ```json
+  {
+    "id_film" : 1,
+    "id_studio": 1,
+    "tanggal_tayang": "2024-04-25T00:00:00Z",
+    "jam_tayang": "2024-04-25T17:30:00Z",
+    "harga_tiket": 50000
+}
+  
+#### PUT Update Jadwal
+- Endpoint: `https://home-cinema-production.up.railway.app/jadwal/:id_jadwal`
+- Deskripsi:  Mengizinkan admin untuk memperbarui entri jadwal yang ada. Memerlukan autentikasi admin (middleware.JWTAuth(2)). (Permintaan PUT)
+- Notes:
+  - tanggal_tayang dan jam_tayang harus sama seperti sebelum dilakukan pengubahan
+- Authorization: Bearer Token
+- Token: ```<token>```
+- Contoh input Raw Body (JSON):
+  ```json
+  {
+    "id_film" : 1,
+    "id_studio": 1,
+    "tanggal_tayang": "2024-04-25T00:00:00Z",
+    "jam_tayang": "2024-04-25T17:30:00Z",
+    "harga_tiket": 45000
+}
+
+#### DELETE Delete Jadwal
+- Endpoint: `https://home-cinema-production.up.railway.app/jadwal/:id_jadwal`
+- Deskripsi: Mengizinkan admin untuk menghapus entri jadwal. Memerlukan autentikasi admin (middleware.JWTAuth(2)). (Permintaan DELETE)
+- Authorization: Bearer Token
+- Token: ```<token>```
 
 
 
