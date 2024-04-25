@@ -494,9 +494,25 @@ Catatan :
 - Token: ```<token>```
 
 
-### Tiket
+### Ticket
 
+#### GET GetUserTicketHistory
+- Endpoint: `https://home-cinema-production.up.railway.app/transactions/tickets`
+- Deskripsi:Endpoin ini mengambil riwayat tiket pengguna, menampilkan informasi tiket yang terkait dengan riwayat transaksinya. Jika field bersifat foreign key, maka value field berisikan ID dari foreign key tersebut. Memerlukan autentikasi user (middleware.JWTAuth(1)). (Permintaan POST)
+- Authorization: Bearer Token
+- Token: ```<token>``` 
 
+#### GET GetUserTransactionHistory By Transaction ID
+- Endpoint: `https://home-cinema-production.up.railway.app/transactions/:id_transaksi/tickets`
+- Deskripsi: Endpoint ini mengambil informasi tiket tertentu berdasarkan ID transaksinya, yang diperoleh dari parameter URL :id_transaksi. Endpoint ini berguna untuk melihat detail tiket yang terkait dengan transaksi tertentu. Jika field bersifat foreign key, maka value field berisikan ID dari foreign key tersebut. Memerlukan autentikasi user (middleware.JWTAuth(1)). (Permintaan POST)
+- Authorization: Bearer Token
+- Token: ```<token>```
+
+#### GET GetUserTransactionHistory By Transaction ID By ID Ticket (Specific Ticket)
+- Endpoint: `https://home-cinema-production.up.railway.app/transactions/:id_transaksi/tickets/:id_ticket`
+- Deskripsi: itik akhir ini mengambil informasi detail dari tiket tertentu. ID transaksi dan ID tiket didapatkan dari parameter URL :id_transaksi dan :id_ticket. Titik akhir ini memberikan informasi paling detail tentang sebuah tiket tertentu. Jika field bersifat foreign key, maka value field berisikan ID dari foreign key tersebut. Memerlukan autentikasi user (middleware.JWTAuth(1)). (Permintaan POST)
+- Authorization: Bearer Token
+- Token: ```<token>```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
