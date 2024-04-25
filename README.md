@@ -8,14 +8,14 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/RickyIG/quiz-3-golang">
+  <a href="https://github.com/RickyIG/home-cinema">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center"Home Cinema API</h3>
 
   <p align="center">
-    Quiz 3 Golang
+    Home Cinema API
     <br />
     <a href="https://github.com/RickyIG/home-cinema"><strong>Explore the project »</strong></a>
     <br />
@@ -60,13 +60,15 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Project backend yang menggunakan Golang, Gin Framework, dan Railway deployment bertujuan untuk mengembangkan serangkaian API yang memungkinkan pengguna untuk melakukan operasi CRUD (Create, Read, Update, Delete) terhadap dua jenis sumber daya utama: bangun datar dan kategori buku beserta buku itu sendiri. Dalam konteks ini, backend bertindak sebagai jembatan antara klien (seperti aplikasi web atau perangkat lunak lainnya) dan basis data yang berisi informasi tentang bangun datar dan daftar kategori serta buku yang berkaitan.
+Sistem API Home Cinema hadir sebagai solusi komprehensif untuk mengoptimalkan pengelolaan berbagai aspek operasional bioskop. Dibangun dengan teknologi modern, sistem ini menawarkan berbagai fitur yang bermanfaat bagi pengelola bioskop untuk meningkatkan efisiensi dan efektivitas dalam menjalankan bisnisnya.
 
-Pertama-tama, API yang berfokus pada bangun datar menyediakan endpoint untuk menghitung berbagai properti dan dimensi dari bangun datar seperti persegi, persegi panjang, segitiga, dan lainnya. Pengguna dapat mengirimkan permintaan dengan parameter yang sesuai untuk memperoleh hasil perhitungan yang diinginkan dalam format yang sesuai seperti JSON.
+Keunggulan utama Sistem API Home Cinema terletak pada kemampuannya untuk mengelola berbagai elemen penting dalam operasional bioskop. Pengelola dapat dengan mudah menambah, memperbarui, dan menghapus informasi film yang ditayangkan, termasuk detail seperti judul, sutradara, genre, dan durasi. Sistem ini juga memungkinkan pengelola untuk memantau dan mengelola daftar studio, termasuk informasi kapasitas, layout kursi, dan jadwal penayangan film.
 
-Selanjutnya, API yang terkait dengan kategori dan buku memungkinkan pengguna untuk melakukan operasi CRUD terhadap daftar kategori dan buku yang terkait dengannya. Pengguna dapat membuat, mengambil, memperbarui, dan menghapus kategori buku serta buku individu dalam kategori tertentu melalui endpoint yang disediakan. Informasi seperti judul, penulis, tahun terbit, dan kategori dapat dimasukkan dan diminta dalam permintaan dan respons API.
+Lebih lanjut, Sistem API Home Cinema dilengkapi dengan fitur manajemen transaksi dan tiket yang terintegrasi. Pengelola dapat memproses transaksi pembelian tiket secara efisien, melacak data penjualan, dan mengelola riwayat tiket yang telah dibeli oleh para pengunjung. Fitur-fitur ini membantu pengelola dalam memberikan layanan terbaik bagi para pengunjung dan meningkatkan pendapatan bioskop.
 
-Proyek ini menggunakan Gin Framework untuk mempermudah pengembangan API dengan dukungan routing, middleware, dan fitur-fitur lainnya yang diperlukan untuk membangun aplikasi web yang andal dan efisien. Selain itu, deployment dilakukan menggunakan Railway, memungkinkan proyek untuk di-host dengan mudah dan dikelola dengan baik di lingkungan cloud yang dapat diskalakan sesuai kebutuhan. Dengan demikian, proyek ini menawarkan solusi yang kokoh dan skalabel untuk kebutuhan backend dalam pengembangan aplikasi berbasis web yang berkaitan dengan pengelolaan bangun datar dan katalog buku.
+Dengan desain yang user-friendly dan skalabilitas yang tinggi, Sistem API Home Cinema dapat disesuaikan dengan kebutuhan bioskop yang berbeda. Sistem ini dapat diintegrasikan dengan aplikasi lain seperti aplikasi mobile untuk pembelian tiket atau website bioskop, sehingga memberikan kemudahan dan kenyamanan bagi para pengunjung.
+
+Sistem API Home Cinema merupakan solusi ideal bagi pengelola bioskop yang ingin meningkatkan efisiensi dan efektivitas dalam menjalankan bisnisnya. Dengan fitur-fitur yang lengkap dan terintegrasi, sistem ini membantu pengelola untuk memberikan layanan terbaik bagi para pengunjung dan meningkatkan keuntungan bioskop.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -115,18 +117,20 @@ Berikut link yang telah di-deploy:
 ## Usage
 
 ### User Roles
-- **Role ID 1:** Customer
-- **Role ID 2:** Admin
-- **Role ID 3:** Fintech
+- **Role ID 1:** user
+- **Role ID 2:** admin
+- **Role ID 3:** fintech
 
 
-### User
+### Manajemen User
 
 #### POST Register User
-- Endpoint: `https://home-cinema-production.up.railway.app/register/user`
+- Endpoint: `https://home-cinema-production.up.railway.app/api/register/user`
+- Deskripsi: Endpoint ini memungkinkan pengguna dengan hak user untuk mendaftarkan user baru. (Permintaan POST)
 - Notes:
   - Panjang password harus minimal panjangnya 8 character, harus memuat setidaknya 1 special character, 1 lowercase, 1 uppercase, dan 1 angka
   - Email harus valid
+  - username, email, dan phone_number harus unique
 - Contoh Input Raw Body (JSON):
   ```json
   {
@@ -139,122 +143,96 @@ Berikut link yang telah di-deploy:
   }
 
 
-#### POST Register User
-- Endpoint: `https://home-cinema-production.up.railway.app/register/user`
+#### POST Register Admin
+- Endpoint: `https://home-cinema-production.up.railway.app/api/register/admin`
+- Deskripsi : Endpoint ini memungkinkan pengguna dengan hak istimewa admin untuk mendaftarkan admin baru. (Permintaan POST)
+- Notes:
+  - Panjang password harus minimal panjangnya 8 character, harus memuat setidaknya 1 special character, 1 lowercase, 1 uppercase, dan 1 angka
+  - Email harus valid
+  - username, email, dan phone_number harus unique
 - Contoh Input Raw Body (JSON):
   ```json
   {
-      "username": "rickyindrag",
-      "password": "Kocak@12345"
+    "username": "rickyindrag",
+    "password": "Kocak@12345",
+    "first_name": "Ricky Indra",
+    "last_name" : "Gunawan",
+    "email": "rickyindra53@gmail.com",
+    "phone_number": "082317880077"
   }
 
-#### POST Register User
-- Endpoint: `https://home-cinema-production.up.railway.app/register/user`
+
+#### POST Register Fintech
+- Endpoint: `https://home-cinema-production.up.railway.app/api/register/fintech`
+- Deskripsi: Endpoint ini memungkinkan pengguna dengan hak istimewa fintech untuk mendaftarkan fintech baru. (Permintaan POST)
+- Notes:
+  - Panjang password harus minimal panjangnya 8 character, harus memuat setidaknya 1 special character, 1 lowercase, 1 uppercase, dan 1 angka
+  - Email harus valid
+  - username, email, dan phone_number harus unique
 - Contoh Input Raw Body (JSON):
   ```json
   {
-      "username": "Fintech@12345",
-      "password": "Fintech@12345"
+    "username": "Fintech@12345",
+    "password": "Fintech@12345",
+    "first_name": "Fin",
+    "last_name" : "Tech",
+    "email": "fintech@gmail.com",
+    "phone_number": "0823560934"
   }
+
 
 #### POST Login
-- Endpoint: `https://home-cinema-production.up.railway.app/login`
+- Endpoint: `https://home-cinema-production.up.railway.app/api/login`
+- Deskripsi: Endpoint ini menangani login pengguna dan mengembalikan token autentikasi setelah login berhasil. (Permintaan POST)
 - Contoh Input Raw Body (JSON):
   ```json
   {
       "username": "rickyindrag",
       "password": "Kocak@12345"
   }
+  
+#### GET User Profile
+- Endpoint: `https://home-cinema-production.up.railway.app/api/user/profile`
+- Deskripsi: Endpoint ini mengambil informasi profil user. Memerlukan autentikasi user dengan JWT (JSON Web Token) dan pemeriksaan role (middleware.JWTAuth(1) menunjukkan role user). (Permintaan GET)
+- Contoh output (JSON):
+  ```json
+  {
+      "message": "Login successful",
+      "token": tokenString
+  }
 
+#### GET Admin Profile
+- Endpoint: `https://home-cinema-production.up.railway.app/api/admin/profile`
+- Deskripsi: Endpoint ini mengambil informasi profil admin. Memerlukan autentikasi admin dengan JWT (JSON Web Token) dan pemeriksaan role (middleware.JWTAuth(2) menunjukkan role admin). (Permintaan GET)
+- Contoh output (JSON):
+  ```json
+  {
+      "message": "Login successful",
+      "token": tokenString
+  }
 
-https://quiz-3-golang-production.up.railway.app/bangun-datar/segitiga-sama-sisi?hitung=luas&alas=7&tinggi=4
+#### GET Fintech Profile
+- Endpoint: `https://home-cinema-production.up.railway.app/api/fintech/profile`
+- Deskripsi: Endpoint ini mengambil informasi profil fintech. Memerlukan autentikasi fintech dengan JWT (JSON Web Token) dan pemeriksaan role (middleware.JWTAuth(3) menunjukkan role fintech). (Permintaan GET)
+- Contoh output (JSON):
+  ```json
+  {
+      "message": "Login successful",
+      "token": tokenString
+  }
 
-https://quiz-3-golang-production.up.railway.app/bangun-datar/segitiga-sama-sisi?hitung=keliling&alas=7&tinggi=4
+#### PUT Top Up oleh Fintech
+- Endpoint: `https://home-cinema-production.up.railway.app/api/fintech/addbalance/user/:id_user`
+- Deskripsi: Endpoint ini memungkinkan pihak ketiga (penyedia layanan keuangan) untuk menambah saldo pengguna. ID pengguna diperoleh dari parameter URL :id_user. Perhatikan bahwa endpoint ini memerlukan autentikasi JWT dengan level 3, yang kemungkinan ditujukan khusus untuk peran penyedia layanan keuangan (fintech).
+- Note:
+  - Metodenya adalah penambahan balance user saat ini + balance yang diinput 
+- Contoh input Raw Body (JSON):
+  ```json
+  {
+      "balance": 150000
+  }
 
-
-https://quiz-3-golang-production.up.railway.app/bangun-datar/persegi?hitung=luas&sisi=7
-
-https://quiz-3-golang-production.up.railway.app/bangun-datar/persegi?hitung=keliling&sisi=7
-
-
-https://quiz-3-golang-production.up.railway.app/bangun-datar/persegi-panjang?hitung=luas&panjang=7&lebar=4
-
-https://quiz-3-golang-production.up.railway.app/bangun-datar/persegi-panjang?hitung=keliling&panjang=7&lebar=4
-
-
-https://quiz-3-golang-production.up.railway.app/bangun-datar/lingkaran?hitung=luas&jariJari=7
-
-https://quiz-3-golang-production.up.railway.app/bangun-datar/persegi-panjang?hitung=keliling&panjang=7&lebar=4
-
-
-Perlu diingat bahwa hitung itu nilainya antara luas / keliling.
-
-Perhatikan juga parameter-parameternya.
-
-
-https://quiz-3-golang-production.up.railway.app/categories -> GET -> Mendapatkan/menampilkan semua categories
-
-https://quiz-3-golang-production.up.railway.app/categories -> POST -> Menambah categories
-
-https://quiz-3-golang-production.up.railway.app/categories/:id -> PUT -> Mengedit categories
-
-https://quiz-3-golang-production.up.railway.app/categories/:id -> DELETE -> Menghapus categories
-
-
-https://quiz-3-golang-production.up.railway.app/books -> GET -> Mendapatkan/menampilkan semua buku
-
-https://quiz-3-golang-production.up.railway.app/books -> POST -> Menambah buku
-
-https://quiz-3-golang-production.up.railway.app/books/:id -> PUT -> Mengedit buku
-
-https://quiz-3-golang-production.up.railway.app/books/:id -> DELETE -> Menghapus buku
-
-
-
-https://quiz-3-golang-production.up.railway.app/categories/:id/books -> GET -> Melihat semua buku berdasarkan category ID
-
-Perlu diingat bahwa id dalam tabel categories dan category_id dalam tabel books itu berhubungan (FOREIGN KEY).
-
-Untuk POST, PUT, DELETE, perlu auth 
-
-username: admin
-
-password: password
-
-
-username: editor
-
-password: secret
-
-
-Contoh raw body untuk insert category
-```
-{
-     "name": "Sastra Indonesia"
-}
-```
-Contoh raw body untuk insert buku
-
-```
-{
-    "title": "Laskar Pelangi",
-    "description": "Novel inspiratif tentang persahabatan dan semangat meraih mimpi di tengah keterbatasan.",
-    "image_url": "https://upload.wikimedia.org/wikipedia/id/1/17/Laskar_Pelangi_film.jpg",
-    "release_year": 2008,
-    "price": "Rp 50.000",
-    "total_page": 384,
-    "category_id": 1
-}
-```
-
-
-Note :
-
-Keadaan saat ini:
-
-- buku dengan id 1 baru saja diedit
-- buku dengan id 2 baru saja dihapus
-- unauthorized user cuma bisa get
+### Manajemen Film
 
 
 
