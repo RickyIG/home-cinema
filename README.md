@@ -231,6 +231,8 @@ Berikut link yang telah di-deploy:
       "balance": 150000
   }
 
+
+
 ### Manajemen Film
 
 #### GET All Films
@@ -246,6 +248,8 @@ Berikut link yang telah di-deploy:
 - Deskripsi: Mengizinkan admin untuk membuat entri film baru. Memerlukan autentikasi admin (middleware.JWTAuth(2)). (Permintaan POST)
 - Notes:
   - Semua harus diisi.
+- Authorization: Bearer Token
+- Token: ```<token>```
 - Contoh Input Raw Body (JSON):
   ```json
   {
@@ -273,11 +277,59 @@ Berikut link yang telah di-deploy:
     "image_url": "https://https://www.example.com/Dark-Knight-Movie-Poster.png"
 }
 
-#### DELETE Film
+#### DELETE Delete Film
 - Endpoint: `https://home-cinema-production.up.railway.app/films/:id_film`
 - Deskripsi: Mengizinkan admin untuk menghapus entri film. Memerlukan autentikasi admin (middleware.JWTAuth(2)). (Permintaan DELETE)
 - Authorization: Bearer Token
 - Token: ```<token>```
+
+
+
+### Manajemen Studio
+
+#### GET All Studios
+- Endpoint: `https://home-cinema-production.up.railway.app/studios`
+- Deskripsi: Mengambil daftar semua studio di sistem. (Permintaan GET)
+
+#### GET Studio by ID Studio
+- Endpoint: `https://home-cinema-production.up.railway.app/studios/:id_studio`
+- Deskripsi: Mengambil informasi tentang studio tertentu berdasarkan ID-nya. (Permintaan GET)
+
+#### POST Insert Studio
+- Endpoint: `https://home-cinema-production.up.railway.app/studios`
+- Deskripsi: Mengizinkan admin untuk membuat entri studio baru. Memerlukan autentikasi admin (middleware.JWTAuth(2)). (Permintaan POST)
+- Notes:
+  - Semua harus diisi.
+  - Tipe studio bisa diisi 2D, 3D atau IMAX (optional, value tidak harus sama tapi tetap harus diisi)
+- Authorization: Bearer Token
+- Token: ```<token>```
+- Contoh Input Raw Body (JSON):
+  ```json
+  {
+    "nama_studio": "Studio 1",
+    "jumlah_kursi": 8,
+    "tipe_studio" : "2D"
+  }
+
+#### PUT Update Studio
+- Endpoint: `https://home-cinema-production.up.railway.app/studios`
+- Deskripsi:  Mengizinkan admin untuk memperbarui entri studio yang ada. Memerlukan autentikasi admin (middleware.JWTAuth(2)). (Permintaan PUT)
+- Authorization: Bearer Token
+- Token: ```<token>```
+- Contoh input Raw Body (JSON):
+  ```json
+  {
+    "nama_studio": "Studio 1",
+    "jumlah_kursi": 8,
+    "tipe_studio" : "IMAX"
+  }
+
+#### DELETE Delete Studio
+- Endpoint: `https://home-cinema-production.up.railway.app/studios/:id_studio`
+- Deskripsi: Mengizinkan admin untuk menghapus entri studio. Memerlukan autentikasi admin (middleware.JWTAuth(2)). (Permintaan DELETE)
+- Authorization: Bearer Token
+- Token: ```<token>```
+
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
