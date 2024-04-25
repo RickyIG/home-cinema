@@ -312,7 +312,7 @@ Berikut link yang telah di-deploy:
   }
 
 #### PUT Update Studio
-- Endpoint: `https://home-cinema-production.up.railway.app/studios`
+- Endpoint: `https://home-cinema-production.up.railway.app/studios/:id_studio`
 - Deskripsi:  Mengizinkan admin untuk memperbarui entri studio yang ada. Memerlukan autentikasi admin (middleware.JWTAuth(2)). (Permintaan PUT)
 - Authorization: Bearer Token
 - Token: ```<token>```
