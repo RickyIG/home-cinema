@@ -400,6 +400,7 @@ Catatan :
 - Deskripsi: Mengizinkan admin untuk membuat entri jadwal film baru. Memerlukan autentikasi admin (middleware.JWTAuth(2)). (Permintaan POST)
 - Notes:
   - Semua harus diisi.
+  - API ini akan secara otomatis melakukan POST Kursi sesuai dengan jumlah_kursi dalam tabel Studio
   - Perhatikan pada contoh input raw body (JSON).
     - tanggal_tayang = Tanggal film tayang, yang diutamakan adalah data YYYY-MM-DD, meskipun cara inputnya harus sesuai format ["2024-04-25T00:00:00Z"]
     - jam_tayang = Jam film tayang, yang diutamakan adalah data hh:mm:ss, meskipun cara inputnya harus sesuai format ["2024-04-25T17:30:00Z"]
@@ -438,6 +439,62 @@ Catatan :
 - Authorization: Bearer Token
 - Token: ```<token>```
 
+
+
+### Transaksi
+
+Catatan : 
+- Disinilah Endpoint Transaksi berlangsung.
+
+#### POST Pesan Tiket (Melakukan Transaksi)
+- Endpoint: `https://home-cinema-production.up.railway.app/jadwal/:id_jadwal/transactions`
+- Deskripsi: Endpoint ini memungkinkan pengguna untuk membuat transaksi (mungkin untuk pembelian tiket) untuk jadwal tertentu. ID jadwal tersebut diperoleh dari parameter URL :id_jadwal. Memerlukan autentikasi user (middleware.JWTAuth(1)). (Permintaan POST)
+- Notes:
+  - Semua harus diisi.
+  - Endpoint ini mampu menerima lebih dari 1 tiket.
+  - API ini dapat memproses:
+    - Mengecek kursi tersedia/tidak.
+    - Melakukan POST ticket otomatis.
+    - Terdapat sistem balance, sehingga jika berhasil maka balance user terpotong.
+  - Perhatikan pada contoh input raw body (JSON).
+    - transactionData sengaja dikosongkan karena data-datanya sudah didapatkan dari Param dan Token. Anggaplah user sedang melihat jadwal kemudian ingin memesan
+    - IDKursi = Sesuaikan dengan data di tabel Kursi
+- Authorization: Bearer Token
+- Token: ```<token>```
+- Contoh Input Raw Body (JSON):
+  ```json
+  {
+  "transactionData": {},
+  "Tickets": [
+    {
+      "IDKursi": 2
+    },
+    {
+      "IDKursi": 3
+    }
+  ]
+  }
+
+#### GET GetUserTransactionHistory
+- Endpoint: `https://home-cinema-production.up.railway.app/transactions`
+- Deskripsi: Endpoint ini mengambil riwayat transaksi pengguna, berisi detail pembelian dan tiket. Jika field bersifat foreign key, maka value field berisikan ID dari foreign key tersebut. Memerlukan autentikasi user (middleware.JWTAuth(1)). (Permintaan POST)
+- Authorization: Bearer Token
+- Token: ```<token>``` 
+
+#### GET GetUserTransactionHistory By Transaction ID
+- Endpoint: `https://home-cinema-production.up.railway.app/transactions/:id_transaksi`
+- Deskripsi: Endpoin ini mengambil informasi tentang transaksi tertentu berdasarkan ID transaksinya, yang diperoleh dari parameter URL :id_transaksi. Jika field bersifat foreign key, maka value field berisikan ID dari foreign key tersebut. Memerlukan autentikasi user (middleware.JWTAuth(1)). (Permintaan POST)
+- Authorization: Bearer Token
+- Token: ```<token>```
+
+#### GET GetUserTransactionHistory By Transaction ID
+- Endpoint: `https://home-cinema-production.up.railway.app/transactions/:id_transaksi/details`
+- Deskripsi: Endpoint ini mengambil informasi lebih detail tentang transaksi tertentu berdasarkan ID transaksinya, yang diperoleh dari parameter URL :id_transaksi.  Detail yang diberikan lebih lengkap dibandingkan dengan endpoint sebelumnya. Jika field bersifat foreign key, maka akan menampilkan keseluruhan field dari tabel foreign key tersebut. Memerlukan autentikasi user (middleware.JWTAuth(1)). (Permintaan POST)
+- Authorization: Bearer Token
+- Token: ```<token>```
+
+
+### Tiket
 
 
 
