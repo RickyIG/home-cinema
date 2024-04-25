@@ -85,7 +85,7 @@ func main() {
 
 	// transaksis
 	// Create a TransaksiRepository instance
-	transRepo := repository.NewTransaksiRepository(database.DbConnection) // Replace with actual implementation
+	transRepo := repository.NewTransaksiRepository(database.DbConnection)
 	// Create a TransaksiController instance, passing the repository
 	controller := controllers.NewTransaksiController(transRepo)
 	// Define routes
