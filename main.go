@@ -7,17 +7,11 @@ import (
 	"home-cinema/database"
 	"home-cinema/middleware"
 	"home-cinema/repository"
+	"os"
 
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
-)
-
-const (
-	host     = "localhost"
-	port     = 5432
-	user     = "postgres"
-	password = "postgres"
-	dbname   = "cinema"
 )
 
 var (
@@ -26,7 +20,16 @@ var (
 )
 
 func main() {
-	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
+
+	//ENV Configuration
+	err = godotenv.Load("config/.env")
+	if err != nil {
+		fmt.Println("failed load file environment")
+	} else {
+		fmt.Println("success read file environment")
+	}
+
+	psqlInfo := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable", os.Getenv("PGHOST"), os.Getenv("PGPORT"), os.Getenv("PGUSER"), os.Getenv("PGPASSWORD"), os.Getenv("PGDATABASE"))
 
 	DB, err = sql.Open("postgres", psqlInfo)
 	err = DB.Ping()
@@ -37,9 +40,9 @@ func main() {
 		fmt.Println("DB Connection Success")
 	}
 
-	defer DB.Close()
-
 	database.DbMigrate(DB)
+
+	defer DB.Close()
 
 	// initiate gin
 	router := gin.Default()
@@ -101,5 +104,5 @@ func main() {
 	router.GET("/transactions/:id_transaksi/tickets", middleware.JWTAuth(1), controllers.GetUserTicketHistoryByTransactionID)
 	router.GET("/transactions/:id_transaksi/tickets/:id_ticket", middleware.JWTAuth(1), controllers.GetUserTicketHistoryByIDs)
 
-	router.Run(":8080")
+	router.Run(":" + os.Getenv("PORT"))
 }
