@@ -124,6 +124,7 @@ Berikut link yang telah di-deploy:
 ## Usage
 
 ### User Roles
+Predefined roles.
 - **Role ID 1:** user
 - **Role ID 2:** admin
 - **Role ID 3:** fintech
@@ -329,6 +330,56 @@ Berikut link yang telah di-deploy:
 - Deskripsi: Mengizinkan admin untuk menghapus entri studio. Memerlukan autentikasi admin (middleware.JWTAuth(2)). (Permintaan DELETE)
 - Authorization: Bearer Token
 - Token: ```<token>```
+
+
+### Manajemen Kursi
+
+Catatan : 
+- CRUD Kursi (INSERT Kursi, POST Kursi, PUT Kursi, dan DELETE Kursi) jarang digunakan karena akan ada proses automasi dari pembuatan Jadwal.
+- Perhatikan foreign key pada ERD.
+
+#### GET All Kursis
+- Endpoint: `https://home-cinema-production.up.railway.app/studios/:id_studio/seats`
+- Deskripsi: Mengambil daftar semua kursi untuk studio tertentu berdasarkan ID-nya. (Permintaan GET)
+
+#### GET Kursi by ID Kursi
+- Endpoint: `https://home-cinema-production.up.railway.app/studios/:id_studio/seats/:id_kursi`
+- Deskripsi: Mengambil informasi tentang kursi tertentu dalam studio, diidentifikasi oleh ID studio dan ID kursi di parameter URL. Memerlukan autentikasi pengguna (middleware.JWTAuth(1)). (Permintaan GET)
+- Authorization: Bearer Token
+- Token: ```<token>``` 
+
+#### POST Insert Kursi
+- Endpoint: `https://home-cinema-production.up.railway.app/studios/:id_studio/seats`
+- Deskripsi: Mengizinkan admin untuk membuat kursi baru untuk studio. Memerlukan autentikasi admin (middleware.JWTAuth(2)). (Permintaan POST)
+- Notes:
+  - Semua harus diisi.
+- Authorization: Bearer Token
+- Token: ```<token>```
+- Contoh Input Raw Body (JSON):
+  ```json
+  {
+    "nomor_kursi": "A-1"
+  }
+  
+#### PUT Update Kursi
+- Endpoint: `https://home-cinema-production.up.railway.app/studios/:id_studio/seats/:id_kursi`
+- Deskripsi:  Mengizinkan admin untuk memperbarui kursi yang ada untuk studio. Memerlukan autentikasi admin (middleware.JWTAuth(2)). (Permintaan PUT)
+- Authorization: Bearer Token
+- Token: ```<token>```
+- Contoh input Raw Body (JSON):
+  ```json
+  {
+    "nomor_kursi": "A-2"
+  }
+
+#### DELETE Delete Kursi
+- Endpoint: `https://home-cinema-production.up.railway.app/studios/:id_studio/seats/:id_kursi`
+- Deskripsi: Mengizinkan admin untuk menghapus kursi studio. Memerlukan autentikasi admin (middleware.JWTAuth(2)). (Permintaan DELETE)
+- Authorization: Bearer Token
+- Token: ```<token>```
+
+
+
 
 
 
