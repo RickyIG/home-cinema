@@ -201,38 +201,30 @@ Berikut link yang telah di-deploy:
 #### GET User Profile
 - Endpoint: `https://home-cinema-production.up.railway.app/api/user/profile`
 - Deskripsi: Endpoint ini mengambil informasi profil user. Memerlukan autentikasi user dengan JWT (JSON Web Token) dan pemeriksaan role (middleware.JWTAuth(1) menunjukkan role user). (Permintaan GET)
-- Contoh output (JSON):
-  ```json
-  {
-      "message": "Login successful",
-      "token": tokenString
-  }
+- Authorization: Bearer Token
+- Token: ```<token>```
+
 
 #### GET Admin Profile
 - Endpoint: `https://home-cinema-production.up.railway.app/api/admin/profile`
 - Deskripsi: Endpoint ini mengambil informasi profil admin. Memerlukan autentikasi admin dengan JWT (JSON Web Token) dan pemeriksaan role (middleware.JWTAuth(2) menunjukkan role admin). (Permintaan GET)
-- Contoh output (JSON):
-  ```json
-  {
-      "message": "Login successful",
-      "token": tokenString
-  }
+- Authorization: Bearer Token
+- Token: ```<token>```
 
 #### GET Fintech Profile
 - Endpoint: `https://home-cinema-production.up.railway.app/api/fintech/profile`
 - Deskripsi: Endpoint ini mengambil informasi profil fintech. Memerlukan autentikasi fintech dengan JWT (JSON Web Token) dan pemeriksaan role (middleware.JWTAuth(3) menunjukkan role fintech). (Permintaan GET)
-- Contoh output (JSON):
-  ```json
-  {
-      "message": "Login successful",
-      "token": tokenString
-  }
+- Authorization: Bearer Token
+- Token: ```<token>```
+
 
 #### PUT Top Up oleh Fintech
 - Endpoint: `https://home-cinema-production.up.railway.app/api/fintech/addbalance/user/:id_user`
 - Deskripsi: Endpoint ini memungkinkan pihak ketiga (penyedia layanan keuangan) untuk menambah saldo pengguna. ID pengguna diperoleh dari parameter URL :id_user. Perhatikan bahwa endpoint ini memerlukan autentikasi JWT dengan level 3, yang kemungkinan ditujukan khusus untuk peran penyedia layanan keuangan (fintech).
 - Note:
-  - Metodenya adalah penambahan balance user saat ini + balance yang diinput 
+  - Metodenya adalah penambahan balance user saat ini + balance yang diinput
+- Authorization: Bearer Token
+- Token: ```<token>```
 - Contoh input Raw Body (JSON):
   ```json
   {
@@ -241,6 +233,51 @@ Berikut link yang telah di-deploy:
 
 ### Manajemen Film
 
+#### GET All Films
+- Endpoint: `https://home-cinema-production.up.railway.app/films`
+- Deskripsi: Mengambil daftar semua film yang saat ini ada di sistem. (Permintaan GET)
+
+#### GET Film by ID Film
+- Endpoint: `https://home-cinema-production.up.railway.app/films/:id_film`
+- Deskripsi: Mengambil informasi tentang film tertentu berdasarkan ID-nya di parameter URL. (Permintaan GET)
+
+#### POST Insert Film
+- Endpoint: `https://home-cinema-production.up.railway.app/films`
+- Deskripsi: Mengizinkan admin untuk membuat entri film baru. Memerlukan autentikasi admin (middleware.JWTAuth(2)). (Permintaan POST)
+- Notes:
+  - Semua harus diisi.
+- Contoh Input Raw Body (JSON):
+  ```json
+  {
+    "judul_film": "Meraih Mimpi",
+    "genre": "Drama",
+    "sinopsis": "Ayu, seorang gadis desa yang memiliki cita-cita besar untuk menjadi seorang penari. Ia harus menghadapi berbagai rintangan dan perjuangan untuk meraih mimpinya tersebut.",
+    "durasi": 120,
+    "rating": "R",
+    "image_url": "https://www.example.com/test.jpg"
+}
+
+#### PUT Update Film
+- Endpoint: `https://home-cinema-production.up.railway.app/films/:id_film`
+- Deskripsi: Mengizinkan admin untuk memperbarui entri film yang ada. Memerlukan autentikasi admin (middleware.JWTAuth(2)). (Permintaan PUT)
+- Authorization: Bearer Token
+- Token: ```<token>```
+- Contoh input Raw Body (JSON):
+  ```json
+  {
+    "judul_film": "The Dark Knight",
+    "genre": "Action, Thriller",
+    "sinopsis": "With the help of Batman, Lieutenant James Gordon and District Attorney Harvey Dent fight crime in Gotham City. But the arrival of The Joker throws their already fragile world into chaos, forcing Batman to face the ultimate test.",
+    "durasi": 152,
+    "rating": "D",
+    "image_url": "https://https://www.example.com/Dark-Knight-Movie-Poster.png"
+}
+
+#### DELETE Film
+- Endpoint: `https://home-cinema-production.up.railway.app/films/:id_film`
+- Deskripsi: Mengizinkan admin untuk menghapus entri film. Memerlukan autentikasi admin (middleware.JWTAuth(2)). (Permintaan DELETE)
+- Authorization: Bearer Token
+- Token: ```<token>```
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
