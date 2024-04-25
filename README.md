@@ -124,6 +124,8 @@ Berikut link yang telah di-deploy:
 <!-- USAGE EXAMPLES -->
 ## Usage
 
+Berikut adalah list penggunaan API beserta endpoints-nya.
+
 ### User Roles
 Predefined roles.
 - **Role ID 1:** user
