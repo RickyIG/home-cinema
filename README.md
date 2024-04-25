@@ -111,7 +111,14 @@ Berikut link yang telah di-deploy:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- ERD -->
+## Entity-Relationship Diagram (ERD)
 
+<div align="center">
+  <a href="https://github.com/RickyIG/home-cinema">
+    <img src="images/ERDHomeCinema_RIG.png" alt="ERD">
+  </a>
+</div>
 
 <!-- USAGE EXAMPLES -->
 ## Usage
